@@ -1,0 +1,46 @@
+package com.company;
+
+public class firstAndLastPosOfElemet {
+    public static void main(String[] args) {
+
+    }
+    static public int[] searchRange(int[] nums, int target) {
+        int[] ans = {-1,-1};
+        //First Occurence
+        int start = search(nums , target , true) ;
+        int end = search(nums,target,false);
+        ans[0] = start;
+        ans[1] = end;
+        return ans ;
+    }
+    static int search(int[] nums , int target , boolean findStartIndex)
+    {
+        int ans = -1;
+        int start = 0 ;
+        int end = nums.length - 1;
+        int first , last;
+        while (start <= end)
+        {
+            int mid = start + (end - start) / 2 ;
+            if (nums[mid] > target)
+            {
+                end = mid - 1;
+            }
+            else if (nums[mid] < target)
+            {
+                start = mid + 1;
+            }
+            else {
+                ans = mid;
+                if (findStartIndex == true){
+                    end = mid - 1 ;
+                }
+                else
+                {
+                    start = mid + 1;
+                }
+            }
+        }
+        return ans;
+    }
+}
